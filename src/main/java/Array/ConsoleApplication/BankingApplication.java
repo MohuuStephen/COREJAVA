@@ -15,6 +15,6 @@ public class BankingApplication
     private long AccountNumber;
     private String Branch;
     private long PanNumber;
-    private double MobileNumber;
+    private long MobileNumber;
     private String Address;
 }

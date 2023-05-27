@@ -2,7 +2,7 @@ package Array.ConsoleApplication;
 
 public interface BankingApplicationPerformance
 {
-    public String adddetails(BankingApplication Banking);
+    public String adddetails(BankingApplication app);
     public void listalldetails();
     public String updatedetails(String AccountHolderName);
     public String deleteadetails(String AccountHolderName);
