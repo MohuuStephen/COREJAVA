@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ExecutionBankingApplication implements BankingApplicationPerformance
 {
 
-    BankingApplication [] banking= new BankingApplication[10];
+    BankingApplication [] banking= new BankingApplication[4];
 
     public ExecutionBankingApplication()
     {
@@ -66,18 +66,34 @@ public class ExecutionBankingApplication implements BankingApplicationPerformanc
     @Override
     public String adddetails(BankingApplication app)
     {
+        Scanner scan=new Scanner(System.in);
+        try{
         for (int i=0;i<banking.length;i++)
         {
             if (banking[i]==null)
             {
                 banking[i]=app;
-                System.out.println(app.getAccountHolderName()+"has been Added in our Bank Application");
-                break;
+                return app.getAccountHolderName()+"has been added in our studentdetails";
             }
 
         }
-        return app.getAccountHolderName()+"has not been added";
+        throw new BankingException();
+        }
+        catch (BankingException be)
+        {
+            System.out.println(be+"my memory is full,so any one value you want to delete,otherwise there is no chance for add a new details");
+            for (BankingApplication BA:banking)
+            {
+                System.out.println(BA.getAccountHolderName());
+            }
+            System.out.println("which name you want to delete");
+            String holdname= scan.next();
+            deleteadetails(holdname);
+            adddetails(app);
+        }
+        return app.getAccountHolderName()+"has been addd successfully";
     }
+
 
     @Override
     public void listalldetails()
@@ -129,15 +145,30 @@ public class ExecutionBankingApplication implements BankingApplicationPerformanc
     @Override
     public String deleteadetails(String AccountHolderName)
     {
-        for (int index=0;index< banking.length;index++)
+        Scanner scan=new Scanner(System.in);
+        try
         {
-            if (banking[index].getAccountHolderName().equalsIgnoreCase(AccountHolderName))
+            for (int index = 0; index < banking.length; index++)
             {
-                banking[index]=null;
-                System.out.println(AccountHolderName+"has been deleted");
+                if (banking[index].getAccountHolderName().equalsIgnoreCase(AccountHolderName))
+                {
+                    banking[index] = null;
+                    return AccountHolderName + "has been deleted";
+                }
+            }
+            throw new BankingException();
+        }
+        catch (BankingException be)
+        {
+            System.out.println(be+"sorry your input is not match with our details,please give correct name");
+            System.out.println("which name you want to delete");
+            String name= scan.next();
+            for (BankingApplication BA:banking)
+            {
+                System.out.println(BA.getAccountHolderName());
             }
         }
-        return AccountHolderName+"has not been deleted";
+        return AccountHolderName+"has been deleted successfully";
     }
 
     @Override
@@ -157,6 +188,7 @@ public class ExecutionBankingApplication implements BankingApplicationPerformanc
     @Override
     public void sortingdetails()
     {
+
 
 
     }
