@@ -2,7 +2,7 @@ package Array.ConsoleApplication;
 
 import java.util.Scanner;
 
-public class ExecutionBankingApplication implements BankingApplicationPerformance
+public class ExecutionBankingApplication implements BankingApplicationPerformance,Runnable
 {
 
     BankingApplication [] banking= new BankingApplication[4];
@@ -16,12 +16,10 @@ public class ExecutionBankingApplication implements BankingApplicationPerformanc
 
     }
 
-    public static void main(String[] args)
+    synchronized public void run()
     {
-        ExecutionBankingApplication obj=new ExecutionBankingApplication();
-        Scanner scan=new Scanner(System.in);
-        do
-        {
+            ExecutionBankingApplication execute=new ExecutionBankingApplication();
+            Scanner scan=new Scanner(System.in);
             System.out.println("Welcome Sir");
             System.out.println("Tell Me! Which process you want to doing"+"\n1.adddetails\n2.listalldetails\n3.updatedetails\n4.deleteadetails\n5.searchadetails\n6.sortingdetails ");
             int values= scan.nextInt();
@@ -30,37 +28,37 @@ public class ExecutionBankingApplication implements BankingApplicationPerformanc
                 case 1:
                     System.out.println("adding a new holder name"+"\nAccountHolderName\tAccountNumber\tBranch\tPanNumber\tMobileNumber\tAddress");
                     BankingApplication name=new BankingApplication(scan.next(),scan.nextLong(),scan.next(),scan.nextLong(),scan.nextLong(),scan.next());
-                    obj.adddetails(name);
+                    execute.adddetails(name);
                     break;
                 case 2:
                     System.out.println("Listing all the values");
-                    obj.listalldetails();
+                    execute.listalldetails();
                     break;
                 case 3:
                     System.out.println("which kind of value you are going to update ?");
                     String changename=scan.next();
-                    obj.updatedetails(changename);
+                    execute.updatedetails(changename);
                     break;
                 case 4:
                     System.out.println("which Person are going to close their account in this branch");
                     String candidate=scan.next();
-                    obj.deleteadetails(candidate);
+                    execute.deleteadetails(candidate);
                     break;
                 case 5:
                     System.out.println("who details do you want ?");
                     String person= scan.next();
-                    obj.searchadetails(person);
+                    execute.searchadetails(person);
                     break;
                 case 6:
-                    obj.sortingdetails();
+                    execute.sortingdetails();
 
                 default:return;
 
             }
 
-        }while (true);
+        }
 
-    }
+
 
 
     @Override
