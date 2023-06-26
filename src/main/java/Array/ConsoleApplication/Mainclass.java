@@ -6,7 +6,7 @@ public class Mainclass
     {
      //   ExecutionBankingApplication execute=new ExecutionBankingApplication();
 
-        ColletionProcess execute=new ColletionProcess();
+        FileProcess execute=new FileProcess();
 
         Thread th1=new Thread(execute,"Mohanavel");
         Thread th2=new Thread(execute,"stephen");

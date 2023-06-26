@@ -74,7 +74,39 @@ public class ColletionProcess implements BankingApplicationPerformance,Runnable
     @Override
     public String updatedetails(String AccountHolderName)
     {
-        return null;
+        Scanner scan=new Scanner(System.in);
+
+        for (int ind=0;ind< bank.size();ind++)
+        {
+            if (bank.get(ind).getAccountHolderName().equalsIgnoreCase(AccountHolderName))
+            {
+
+                System.out.println("which data you want to updte....?");
+                String usage=scan.next();
+                switch (usage)
+                {
+                    case "AccountHolderName":
+                        System.out.println("you are selected AccountHolderName \nplease type your Re-AccountHolderName");
+                        String newvalue= scan.next();
+                        bank.get(ind).setAccountHolderName(newvalue);
+                        return null;
+                    case "Branch":
+                        System.out.println("you are selected Branch Details \nplease type your transfer location");
+                        String newvalue1=scan.next();
+                        bank.get(ind).setBranch(newvalue1);
+                        return null;
+                    case "MobileNumber":
+                        System.out.println("you are selected MobileNumber \nplease type your changed MobileNumber");
+                        long newvalue2= scan.nextLong();
+                        bank.get(ind).setMobileNumber(newvalue2);
+                        return null;
+
+                }
+
+            }
+        }
+        return AccountHolderName;
+
     }
 
     @Override
@@ -100,7 +132,6 @@ public class ColletionProcess implements BankingApplicationPerformance,Runnable
     @Override
     public void sortingdetails()
     {
-
 
     }
 }
